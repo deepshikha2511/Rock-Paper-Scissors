@@ -1,91 +1,65 @@
-const prompt = require("prompt-sync")();
+const button1 = document.getElementById("Rock");
+const button2 = document.getElementById("Paper");
+const button3 = document.getElementById("Scissors");
+const resultsDiv = document.getElementById("results");
 
+let playerScore = 0;
+let compScore = 0;
 
-function computerSelection()
-{
-    const arr = ["rock", "paper", "scissors"];
-    const compChoice = Math.floor(Math.random()*3);
-    return(arr[compChoice]);
+button1.addEventListener("click", function () {
+  playRound("rock", computerSelection());
+});
+
+button2.addEventListener("click", function () {
+  playRound("paper", computerSelection());
+});
+
+button3.addEventListener("click", function () {
+  playRound("scissors", computerSelection());
+});
+
+function computerSelection() {
+  const arr = ["rock", "paper", "scissors"];
+  const compChoice = Math.floor(Math.random() * 3);
+  return arr[compChoice];
 }
 
-const playerSelection = prompt("Enter your choice (rock, paper, or scissors): ");
-const computerChoice = computerSelection();
+function playRound(playerSelection, computerSelection) {
+  if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
+  ) {
+    playerScore++;
+    resultsDiv.innerHTML = "You win this round!<br>";
+  } else if (
+    (playerSelection === "rock" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "rock")
+  ) {
+    compScore++;
+    resultsDiv.innerHTML = "Computer wins this round!<br>";
+  } else {
+    resultsDiv.textContent = "It's a tie!\n";
+  }
 
+  // Display the running score
+  resultsDiv.innerHTML += `<br>Player: ${playerScore} - Computer: ${compScore}`;
 
-function playRound(playerSelection, computerSelection) 
-{
-    if (playerSelection==="rock" || playerSelection==="paper" || playerSelection==="scissors")
-    {
-        if(playerSelection===computerSelection)
-        {
-            console.log("Its a tie!");
-        }
-    
-        else if(
-            (playerSelection==="rock" && computerSelection==="scissors")||
-            (playerSelection==="paper" && computerSelection==="rock")||
-            (playerSelection==="scissors" && computerSelection==="paper")
-        )
-        {
-            console.log("You win!");
-            return 1;
-        }
-        else
-        {
-            console.log("Computer wins");
-            return -1;
-        }
-
-    console.log("Player chooses:", playerSelection);
-    console.log("Computer chooses:", computerSelection);
-
-    } else {
-        console.log("Invalid input. Please choose 'rock', 'paper', or 'scissors'.");
-        return 0;
-    }
-
+  // Check if any player reached 5 points
+  if (playerScore === 5) {
+    resultsDiv.innerHTML += " You won the game!<br>";
+    resetGame();
+  } else if (compScore === 5) {
+    resultsDiv.innerHTML += " Computer won the game!<br>";
+    resetGame();
+  }
 }
 
+function resetGame() {
+  // Reset scores and announce the winner
+  playerScore = 0;
+  compScore = 0;
 
-playRound(playerSelection.toLowerCase(), computerChoice);
-
-
-function game(){
-
-    let playerScore = 0;
-    let compScore = 0;
-
-    for (let round=1; round<=5; round++){
-        console.log(`round "${round}:`)
-
-
-        const playerSelection = prompt("Enter your choice (rock, paper, or scissors): ");
-        const computerChoice = computerSelection();
-
-        const roundresult = playRound(playerSelection.toLowerCase(), computerChoice);
-
-        if (roundresult===1){
-            playerScore++;
-        }
-        else if(roundresult===-1){
-            compScore++;
-        }
-
-        console.log("Player's Score:", playerScore);
-        console.log("Comp's Score:", compScore);
-
-    }
-
-    if(playerScore>compScore){
-        console.log("You won the game!");
-    }
-    else if(playerScore<compScore){
-        console.log("You lost the game!, Comp won!");
-    }
-    else{
-        console.log("It was a tie")
-    }
-
+  // You can add any additional reset logic here if needed
 }
-
-game();
