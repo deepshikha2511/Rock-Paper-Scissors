@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name = "viewport" content="width=device-width", initial-scale = "1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Rock-Paper-Scissors</title>
     <link rel = "stylesheet" href = "style.css"/>
+    <link rel =  "shortcut icon" href= "favicon.ico"/>
 </head>
 <body>
     <header>
@@ -13,24 +15,35 @@
     </header>
 
     <main class = "main">
-        <!-- <div class ="scoreboard">
-
-        </div> -->
+        <div class="scoreboard">
+            <h2 class="score-info" id="scoreInfo">Hit an option to Start</h2>
+            <h3 class="score-message" id="scoreMessage">The one who scores the most points wins the game!</h3>
         <div id="results" class="result"></div>
 
+        <div class = "button"> 
+            <button id="Rock" class="button-sq">Rock
+            <div class="sign">✊</div>
+            </button>
+            <button id="Paper" class="button-sq">Paper
+                <div class="sign">✋</div>
+            </button>
+            <button id="Scissors" class="button-sq">Scissors
+                <div class="sign">✌</div>
+            </button>
+        </div>
 
-
-  <div class = "button"> 
-    <button id="Rock" class="button-sq">Rock
-        <div class="sign">✊</div>
-    </button>
-    <button id="Paper" class="button-sq">Paper
-        <div class="sign">✋</div>
-    </button>
-    <button id="Scissors" class="button-sq">Scissors
-        <div class="sign">✌</div>
-    </button>
-  </div>
+<footer class="footer">
+    <p>
+      Copyright ©
+      <script>
+        document.write(new Date().getFullYear())
+      </script>
+      Deepshikha
+    </p>
+    <a href="https://github.com/deepshikha2511">
+      <i class="fab fa-github"></i
+    ></a>
+  </footer>
 </main>
 
   <script src="RockPaperScissors.js"></script>
